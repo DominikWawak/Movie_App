@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect}  from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -11,6 +11,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import img from '../../images/pexels-dziana-hasanbekava-5480827.jpg'
+import { getGenres } from "../../api/tmdb-api";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,13 +29,25 @@ const useStyles = makeStyles((theme) => ({
 
 export default function FilterMoviesCard(props) {
   const classes = useStyles();
+  const [genres, setGenres] = useState([{ id: '0', name: "All" }])
 
-  const genres = [
-    {id: 1, name: "Animation"},
-    {id: 2, name: "Comedy"},
-    {id: 3, name: "Thriller"}
-  ]
+  useEffect(() => {
+    getGenres().then((allGenres) => {
+      setGenres([genres[0], ...allGenres]);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
+  const handleChange = (e, type, value) => {
+    e.preventDefault()
+    props.onUserInput(type, value)   // NEW
+  }
+  const handleTextChange = e => {
+    handleChange(e, "name", e.target.value)
+  }
+  const handleGenreChange = e => {
+    handleChange(e, "genre", e.target.value)
+  };
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
@@ -43,18 +56,22 @@ export default function FilterMoviesCard(props) {
           Filter the movies.
         </Typography>
         <TextField
-          className={classes.formControl}
-          id="filled-search"
-          label="Search field"
-          type="search"
-          variant="filled"
-        />
+      className={classes.formControl}
+      id="filled-search"
+      label="Search field"
+      type="search"
+      value={props.titleFilter}
+      variant="filled"
+      onChange={handleTextChange}
+    />
         <FormControl className={classes.formControl}>
           <InputLabel id="genre-label">Genre</InputLabel>
           <Select
-            labelId="genre-label"
-            id="genre-select"
-          >
+      labelId="genre-label"
+      id="genre-select"
+      value={props.genreFilter}
+      onChange={handleGenreChange}
+    >
             {genres.map((genre) => {
               return (
                 <MenuItem key={genre.id} value={genre.id}>
