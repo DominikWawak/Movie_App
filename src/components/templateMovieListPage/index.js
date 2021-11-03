@@ -4,6 +4,7 @@ import FilterCard from "../filterMoviesCard";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import MovieList from "../movieList";
+import Paginator from "../paginator";
 
 const useStyles = makeStyles({
   root: {
@@ -31,6 +32,7 @@ function MovieListPageTemplate({ movies, title, action }) {
   };
 
   return (
+    <>
     <Grid container className={classes.root}>
       <Grid item xs={12}>
         <Header title={title} />
@@ -46,6 +48,10 @@ function MovieListPageTemplate({ movies, title, action }) {
         <MovieList action={action} movies={displayedMovies}></MovieList>
       </Grid>
     </Grid>
+
+    <Paginator/>
+    </>
+    
   );
 }
 export default MovieListPageTemplate;
