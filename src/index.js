@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import HomePage from "./pages/homePage";
+import HomePage from "./pages/HomePage";
 import MoviePage from "./pages/movieDetailsPage";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import FavoriteMoviesPage from "./pages/favouriteMoviesPage.js";
@@ -10,6 +10,7 @@ import SiteHeader from './components/siteHeader'
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from 'react-query/devtools'
 import MoviesContextProvider from "./contexts/moviesContext";
+import { PageNumProvider } from "./contexts/pageNumberContext";
 
 
 const queryClient = new QueryClient({
@@ -28,6 +29,7 @@ const App = () => {
       <BrowserRouter>
           <SiteHeader />      {/* New Header  */}
           <MoviesContextProvider>
+          
             {" "}
       <Switch>
         <Route exact path="/movies/upcoming" component={upcomingMoviesPage} />
@@ -37,7 +39,9 @@ const App = () => {
         <Route path="/reviews/:id" component={MovieReviewPage} />
         <Redirect from="*" to="/" />
       </Switch>
+      
       </MoviesContextProvider>
+
     </BrowserRouter>
     <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>

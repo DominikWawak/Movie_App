@@ -4,7 +4,8 @@ import FilterCard from "../filterMoviesCard";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import MovieList from "../movieList";
-import Paginator from "../paginator";
+import Paginator from "../Paginator";
+import HomePage from "../../pages/HomePage";
 
 const useStyles = makeStyles({
   root: {
@@ -12,11 +13,22 @@ const useStyles = makeStyles({
   },
 });
 
+
+
 function MovieListPageTemplate({ movies, title, action }) {
   const classes = useStyles();
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
   const genreId = Number(genreFilter);
+  const [currentPage,setCurrentPage] = useState(1); 
+  
+
+  const handlePageClicked = (data) =>{
+    setCurrentPage(data.selected)
+    console.log("clicked",data.selected)
+    
+    
+  }
 
   let displayedMovies = movies
     .filter((m) => {
@@ -49,7 +61,8 @@ function MovieListPageTemplate({ movies, title, action }) {
       </Grid>
     </Grid>
 
-    <Paginator/>
+    <Paginator clickFunction = {handlePageClicked}/>
+    
     </>
     
   );
