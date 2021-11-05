@@ -15,20 +15,20 @@ const useStyles = makeStyles({
 
 
 
-function MovieListPageTemplate({ movies, title, action }) {
+function MovieListPageTemplate({ movies, title, action , paginator}) {
   const classes = useStyles();
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
   const genreId = Number(genreFilter);
-  const [currentPage,setCurrentPage] = useState(1); 
+ // const [currentPage,setCurrentPage] = useState(1); 
   
 
-  const handlePageClicked = (data) =>{
-    setCurrentPage(data.selected)
-    console.log("clicked",data.selected)
+  // const handlePageClicked = (data) =>{
+  //   setCurrentPage(data.selected)
+  //   console.log("clicked",data.selected)
     
     
-  }
+  // }
 
   let displayedMovies = movies
     .filter((m) => {
@@ -61,10 +61,13 @@ function MovieListPageTemplate({ movies, title, action }) {
       </Grid>
     </Grid>
 
-    <Paginator clickFunction = {handlePageClicked}/>
+    <div>
+      {paginator}
+    </div>
     
     </>
     
   );
+  //<Paginator clickFunction = {handlePageClicked}/>
 }
 export default MovieListPageTemplate;

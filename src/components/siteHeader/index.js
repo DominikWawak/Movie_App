@@ -12,7 +12,25 @@ import Menu from "@material-ui/core/Menu";
 import { withRouter } from "react-router-dom";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { createTheme } from "@material-ui/core";
 
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      //light: '#757ce8',
+      main: '#37474f',
+      //dark: '#002884',
+      //contrastText: '#fff',
+    },
+    secondary: {
+      light: '#ff7961',
+      main: '#f44336',
+      dark: '#ba000d',
+      contrastText: '#000',
+    },
+  },
+});
 const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
@@ -31,7 +49,7 @@ const SiteHeader = ( { history }) => {
     { label: "Home", path: "/" },
     { label: "Upcoming Movies", path: "/movies/upcoming" },
     { label: "Favorites", path: "/movies/favorites" },
-    { label: "Option 3", path: "/" },
+    { label: "Sign In", path: "/signIn" },
     { label: "Option 4", path: "/" },
   ];
 
@@ -45,13 +63,13 @@ const SiteHeader = ( { history }) => {
 
   return (
     <>
-      <AppBar position="fixed" color="secondary">
+      <AppBar position="fixed" style={{ background: '#2E3B55' }}>
         <Toolbar>
           <Typography variant="h4" className={classes.title}>
-            TMDB Client
+            {/* TMDB Client */}
           </Typography>
           <Typography variant="h6" className={classes.title}>
-            All you ever wanted to know about Movies!
+            {/* All you ever wanted to know about Movies! */}
           </Typography>
             {isMobile ? (
               <>

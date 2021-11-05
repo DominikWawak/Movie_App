@@ -24,13 +24,20 @@ const MovieDetailsPage = (props) => {
     return <h1>{error.message}</h1>;
   }
 
+  const path=`https://image.tmdb.org/t/p/w500/${movie.poster_path}`
 
   return (
     <>
       {movie ? (
         <>
+        
           <PageTemplate movie={movie}>
+
+       
+         
+          
             <MovieDetails movie={movie} />
+            <img src={path}/>
           </PageTemplate>
         </>
       ) : (

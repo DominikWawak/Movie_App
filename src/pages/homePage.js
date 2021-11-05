@@ -10,35 +10,60 @@ import Paginator from "../components/Paginator";
 const HomePage = (props) => {
   
   //console.log("PLEASE WORK",props.pagenum)
-  
-  const {  data, error, isLoading, isError }  = useQuery('discover', getMovies.bind(this,1))
+  const [currentPage,setCurrentPage] = useState(1); 
 
-  if (isLoading) {
-    return <Spinner />
+  // try no chaching
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    getMovies(currentPage).then(movies => {
+      setMovies(movies);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[currentPage]);
+
+  // const {  data, error, isLoading, isError }  = useQuery('discover', getMovies.bind(this,currentPage))
+  
+  // if (isLoading) {
+  //   return <Spinner />
+  // }
+
+  // if (isError) {
+  //   return <h1>{error.message}</h1>
+  // }  
+  //const movies = data.results;
+  
+     
+  const handlePageClicked = (data) =>{
+    setCurrentPage(data.selected +1)
+    console.log("clicked",data.selected)
+    
+    
   }
 
-  if (isError) {
-    return <h1>{error.message}</h1>
-  }  
-  const movies = data.results;
-
-  
+  console.log("outside",currentPage)
   
   // Redundant, but necessary to avoid app crashing.
   const favorites = movies.filter(m => m.favorite)
   localStorage.setItem('favorites', JSON.stringify(favorites))
   //const addToFavorites = (movieId) => true 
 
-  console.log(props.currentP)
+
   return (
+    <>
+    
     <PageTemplate
       title="Discover Movies"
       movies={movies}
       action={(movie) => {
         return <AddToFavoritesIcon movie={movie} />
+    
       }}
       
+     
     />
+    <Paginator clickFunction = {handlePageClicked}/>
+    </>
 );
 };
 

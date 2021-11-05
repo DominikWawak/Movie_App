@@ -1,13 +1,15 @@
 {
-  "name": "moviesApp",
+  "name": "moviesapp",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
+    "firebase": "^6.0.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
+    "react-bootstrap": "^2.0.1",
     "react-dom": "^17.0.1",
     "react-hook-form": "^3.29.4",
     "react-paginate": "^7.1.5",

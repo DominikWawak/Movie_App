@@ -26,12 +26,12 @@ const Paginator= (props)=>{
 
   return (
     <>
-  
-   <h1>PAGINATE</h1>
+    <br></br>
    <ReactPaginate
           previousLabel={"Prev"}
           nextLabel={"Next"}
           breakLabel={"..."}
+          
           pageCount={15}
           marginPagesDisplayed={4}
           onPageChange={props.clickFunction}
@@ -55,5 +55,5 @@ const Paginator= (props)=>{
   );
 }
 
-//export const currentP = () => {};
+
 export default Paginator;
