@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Container } from 'react-bootstrap'
-import AuthProvider from '../contexts/AuthContext'
+import {AuthProvider} from '../contexts/AuthContext'
 import LogInForm from '../components/logIn'
 
 export default function logInPage() {

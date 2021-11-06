@@ -49,7 +49,7 @@ const SiteHeader = ( { history }) => {
     { label: "Home", path: "/" },
     { label: "Upcoming Movies", path: "/movies/upcoming" },
     { label: "Favorites", path: "/movies/favorites" },
-    { label: "Sign In", path: "/signIn" },
+    { label: "Sign In", path: "/signUp" },
     { label: "Option 4", path: "/" },
   ];
 

@@ -1,7 +1,8 @@
 import React , {useContext,useState, useEffect}from 'react'
 import {app} from "../firebase"
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,onAuthStateChanged,sendPasswordResetEmail} from "firebase/auth";
 //import { getAuth, createUserWithEmailAndPassword } from "firebase/compat/auth";
+import firebase from 'firebase/compat';
 
 
 const AuthContext = React.createContext();
@@ -12,12 +13,14 @@ export function useAuth(){
 
 
 
-export default function AuthProvider({children}) {
+export function AuthProvider({children}) {
     const [currentUser,setCurrentUser] = useState()
     const [loading,setLoading] = useState(false)
 
+    const usr = "hello";
+
     function signUp(email,password){
-        return createUserWithEmailAndPassword(auth,email,password) .then((userCredential) => {
+        createUserWithEmailAndPassword(auth,email,password) .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
             // ...
@@ -33,7 +36,7 @@ export default function AuthProvider({children}) {
     function logIn(email,password){
 
         // If i want to use another database I can just chnge the code in these functions
-        return signInWithEmailAndPassword(auth,email,password) .then((userCredential) => {
+         signInWithEmailAndPassword(auth,email,password) .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
             // ...
@@ -46,8 +49,17 @@ export default function AuthProvider({children}) {
           });
     }
 
+
+    function reserPassword(email){
+        sendPasswordResetEmail(auth,email);
+    }
+
+    function logOut(){
+        return auth.signOut()
+    }
+
     useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user => {
+    const unsubscribe = onAuthStateChanged(auth,(user) => {
       
         setCurrentUser(user)
         setLoading(false)
@@ -59,8 +71,11 @@ export default function AuthProvider({children}) {
 
     const value = {
         currentUser,
+        usr,
         signUp,
-        logIn
+        logIn,
+        logOut,
+        reserPassword,
     }
     return (
         <AuthContext.Provider value = {value}>
@@ -68,3 +83,4 @@ export default function AuthProvider({children}) {
         </AuthContext.Provider>
     )
 }
+
