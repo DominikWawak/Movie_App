@@ -24,7 +24,7 @@ const MovieDetailsPage = (props) => {
     return <h1>{error.message}</h1>;
   }
 
-  const path=`https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+  const path=`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`
 
   return (
     <>
@@ -35,9 +35,9 @@ const MovieDetailsPage = (props) => {
 
        
          
-          
+          <img src={path}/>
             <MovieDetails movie={movie} />
-            <img src={path}/>
+            
           </PageTemplate>
         </>
       ) : (

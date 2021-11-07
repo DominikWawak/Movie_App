@@ -13,6 +13,7 @@ import { withRouter } from "react-router-dom";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { createTheme } from "@material-ui/core";
+import MovieIcon from "@material-ui/icons/Movie"
 
 
 const theme = createTheme({
@@ -68,9 +69,17 @@ const SiteHeader = ( { history }) => {
           <Typography variant="h4" className={classes.title}>
             {/* TMDB Client */}
           </Typography>
+          <div className = "d-flex align-items-left justify-content-left" >
           <Typography variant="h6" className={classes.title}>
-            {/* All you ever wanted to know about Movies! */}
+            Stream
+            <MovieIcon
+              fontSize="inherit"
+                style={{ fontSize: "50px" }}
+              />
+          FLICKS
           </Typography>
+          </div>
+          
             {isMobile ? (
               <>
                 <IconButton
