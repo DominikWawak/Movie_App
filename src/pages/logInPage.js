@@ -9,6 +9,7 @@ export default function logInPage() {
        
         <AuthProvider>
         
+        <div style={{backgroundColor:'#2E3B55'}}>
         <Container className = "d-flex align-items-center justify-content-center" 
         style={ {minHeight: "100vh"}}
         >
@@ -16,6 +17,7 @@ export default function logInPage() {
             <LogInForm/>
             </div>
         </Container>
+        </div>
         </AuthProvider>
     )
 }

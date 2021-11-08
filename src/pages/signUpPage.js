@@ -7,6 +7,7 @@ import {AuthProvider} from '../contexts/AuthContext'
 export default function signUpPage() {
     return (
         <AuthProvider>
+            <div style={{backgroundColor:'#2E3B55'}}>
         <Container className = "d-flex align-items-center justify-content-center" 
         style={ {minHeight: "100vh"}}
         >
@@ -14,6 +15,7 @@ export default function signUpPage() {
             <SignUpForm/>
             </div>
         </Container>
+        </div>
         </AuthProvider>
     )
 }

@@ -60,14 +60,14 @@ export default function LogInForm() {
                 <div className="w-100 text-center mt-3">
                     <Link to="/forgotPassword">Forgot Password?</Link>
                 </div>
-
+                <div className="w-100 text-center mt-2">
+            Dont have a have account? <Link to="/signUp">Sign Up</Link>
+        </div>
 
             </Card.Body>
         </Card>
 
-        <div className="w-100 text-center mt-2">
-            Dont have a have account? <Link to="/signUp">Sign Up</Link>
-        </div>
+       
             
         </>
     )

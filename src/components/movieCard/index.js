@@ -18,12 +18,26 @@ import img from '../../images/film-poster-placeholder.png'
 import { Link } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 
+import "../css/movieCard.css"
+
 const useStyles = makeStyles({
-  card: { maxWidth: 345 },
+  card: { maxWidth: 345,},
   media: { height: 500 },
   avatar: {
     backgroundColor: "rgb(255, 0, 0)",
   },
+  movieover: {
+    backgroundColor:"#2E3B55",
+    position:"absolute",
+   
+    
+    transform: 'translateY(100%)',
+    transition: "transform 0.3s ease-in-out",
+
+  }
+
+ 
+  
 });
 
 
@@ -52,8 +66,23 @@ export default function MovieCard({ movie, action }) {
 
 
   return (
-    <Card className={classes.card}>
-        <CardHeader
+  <>
+  
+    <Card className="moviecss">
+       
+    
+      <CardMedia
+        className={classes.media}
+        image={
+          movie.poster_path
+            ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+            : img
+        }
+      />
+
+
+<div className="movieover">
+<CardHeader
       className={classes.header}
       avatar={
         movie.favorite ? (
@@ -73,14 +102,6 @@ export default function MovieCard({ movie, action }) {
         </Typography>
       }
     />
-      <CardMedia
-        className={classes.media}
-        image={
-          movie.poster_path
-            ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-            : img
-        }
-      />
       <CardContent>
         <Grid container>
           <Grid item xs={6}>
@@ -107,6 +128,10 @@ export default function MovieCard({ movie, action }) {
         </Button>
         </Link>
       </CardActions>
-    </Card>
+      </div>
+    
+      </Card>
+      
+    </>
   );
 }

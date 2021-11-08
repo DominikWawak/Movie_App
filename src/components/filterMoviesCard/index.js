@@ -16,17 +16,21 @@ import { useQuery } from "react-query";
 import Spinner from '../spinner';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 345,
-    backgroundColor: "rgb(204, 204, 0)",
-  },
-  media: { height: 300 },
+  // root: {
+  //   maxWidth: 345,
+  //   backgroundColor: "rgb(204, 204, 0)",
+  // },
+  // media: { height: 300 },
 
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 220,
-    backgroundColor: "rgb(255, 255, 255)",
-  },
+  root:{
+    width:'100%'
+  }
+
+  // formControl: {
+  //   margin: theme.spacing(1),
+  //   minWidth: 220,
+  //   backgroundColor: "rgb(255, 255, 255)",
+  //},
 }));
 
 export default function FilterMoviesCard(props) {
@@ -58,6 +62,7 @@ export default function FilterMoviesCard(props) {
 
   return (
     <Card className={classes.root} variant="outlined">
+      {/* className={classes.root} */}
       <CardContent>
         <Typography variant="h5" component="h1">
           <SearchIcon fontSize="large" />
@@ -72,7 +77,8 @@ export default function FilterMoviesCard(props) {
       variant="filled"
       onChange={handleTextChange}
     />
-        <FormControl className={classes.formControl}>
+        <FormControl >
+        {/* className={classes.formControl} */}
           <InputLabel id="genre-label">Genre</InputLabel>
           <Select
       labelId="genre-label"
@@ -96,11 +102,7 @@ export default function FilterMoviesCard(props) {
         title="Filter"
       />
       <CardContent>
-        <Typography variant="h5" component="h1">
-          <SearchIcon fontSize="large" />
-          Filter the movies.
-          <br />
-        </Typography>
+       
       </CardContent>
     </Card>
   );

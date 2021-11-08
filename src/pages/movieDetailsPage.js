@@ -24,21 +24,24 @@ const MovieDetailsPage = (props) => {
     return <h1>{error.message}</h1>;
   }
 
-  const path=`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`
+  const path=`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`
 
   return (
     <>
       {movie ? (
         <>
-        
+        <div style={{backgroundImage: `url(${path})`}}>
           <PageTemplate movie={movie}>
 
        
          
-          <img src={path}/>
+          {/* <img src={path}/> */}
+            <div style={{backgroundColor:"white", color:'#2E3B55', marginTop:'20%'}}>
             <MovieDetails movie={movie} />
+            </div>
             
           </PageTemplate>
+          </div>
         </>
       ) : (
         <p>Waiting for movie details</p>

@@ -66,10 +66,7 @@ const SiteHeader = ( { history }) => {
     <>
       <AppBar position="fixed" style={{ background: '#2E3B55' }}>
         <Toolbar>
-          <Typography variant="h4" className={classes.title}>
-            {/* TMDB Client */}
-          </Typography>
-          <div className = "d-flex align-items-left justify-content-left" >
+         
           <Typography variant="h6" className={classes.title}>
             Stream
             <MovieIcon
@@ -78,7 +75,7 @@ const SiteHeader = ( { history }) => {
               />
           FLICKS
           </Typography>
-          </div>
+          
           
             {isMobile ? (
               <>

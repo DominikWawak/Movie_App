@@ -58,16 +58,16 @@ export function AuthProvider({children}) {
         return auth.signOut()
     }
 
-//     useEffect(() => {
-//     const unsubscribe = onAuthStateChanged(auth,(user) => {
+    useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth,(user) => {
       
-//         setCurrentUser(user)
-//         setLoading(false)
+        setCurrentUser(user)
+        setLoading(false)
         
-//     })
+    })
 
-//     return unsubscribe
-// },[])
+    return unsubscribe()
+},[])
 
     const value = {
         currentUser,

@@ -1,12 +1,19 @@
 import { updateCurrentUser } from '@firebase/auth'
 import React,{useState,useContext,useEffect} from 'react'
-import { Card,Button,Alert } from 'react-bootstrap'
+import { Card,Button,Alert,Form } from 'react-bootstrap'
 import {app} from '../firebase'
 import {db} from '../firebase'
 import { useAuth } from '../contexts/AuthContext'
 import firebase from 'firebase/compat/app'
 import  { getFirestore, collection,query, where, getDocs,limit,orderBy } from "firebase/firestore"
 import { Link, useHistory} from 'react-router-dom'
+
+import CardHeader from "@material-ui/core/CardHeader";
+import Avatar from "@material-ui/core/Avatar";
+import IconButton from "@material-ui/core/IconButton";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import { func } from 'prop-types'
+
 
 
 export default  function Dashboard() {
@@ -65,6 +72,10 @@ export default  function Dashboard() {
     //     return <p>{text}</p>
     // }
 
+    function handleSubmit(){
+
+    }
+
     async function handleLogOut(){
 
         setError('')
@@ -94,14 +105,43 @@ export default  function Dashboard() {
 
         </Card>
 
+
+        <br></br>
+    <Form >
+        <div class="form-group">
+        <label for="exampleFormControlTextarea1">Create a post</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+        <Button className="w-100" type ="submit">Post</Button>
+    </Form>
+
+        <h2>Your Posts</h2>
+        <br/>
         <div>
             {posts.map((post) =>{
                 return (
-                <div>
-                    {" "}
-                    <h1>{post.text}</h1>
-                    <h2>{post.createdAt}</h2>
-                </div>
+                //     <div>
+                //     {" "}
+                //     <h1>{post.text}</h1>
+                //     <h2>{post.createdAt}</h2>
+                // </div>
+                 <Card >
+                 <CardHeader
+                   avatar={
+                     <Avatar aria-label="recipe" >
+                       {currentUser.email}
+                     </Avatar>
+                   }
+                   action={
+                     <IconButton aria-label="settings">
+                       <FavoriteIcon />
+                     </IconButton>
+                   }
+                   title={currentUser.email +" |-| "+ post.createdAt}
+                   
+                   subheader={post.text}
+                 />
+               </Card>
                 )
             })}
         </div>
