@@ -1,7 +1,7 @@
 import { formatMs } from '@material-ui/core'
-import React ,{useRef ,useState}from 'react'
+import React ,{useRef ,useState,useContext}from 'react'
 import {Form,Button,Card, FormLabel, FormControl, Alert} from 'react-bootstrap'
-import { useAuth } from '../../contexts/AuthContext'
+import { useAuth} from '../../contexts/AuthContext'
 import {Link, useHistory} from "react-router-dom";
 
 
@@ -9,13 +9,14 @@ export default function LogInForm() {
 
     const emailRef = useRef()
     const passwordRef = useRef()
-    
+    const {currentUser} = useAuth()
     const {logIn} = useAuth()
     const [error,setError] = useState("")
     const [loading,setLoading] = useState(false)
 
     const history = useHistory()
 
+    console.log(currentUser)
 
     async function handleSubmit(e){
         // Prevent form from refresing 

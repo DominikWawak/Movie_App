@@ -1,7 +1,8 @@
 import { formatMs } from '@material-ui/core'
-import React ,{useRef ,useState}from 'react'
+import React ,{useRef ,useState,useContext}from 'react'
 import {Form,Button,Card, FormLabel, FormControl, Alert} from 'react-bootstrap'
-import { useAuth } from '../../contexts/AuthContext'
+
+import { useAuth} from '../../contexts/AuthContext'
 //USE HISTORY ADDED
 import { Link, useHistory} from 'react-router-dom'
 
@@ -10,7 +11,8 @@ export default function SignUpForm() {
     const emailRef = useRef()
     const passwordRef = useRef()
     const passwordConfirmationlRef = useRef()
-    const {signUp} = useAuth()
+    const currentUser=useAuth()
+    const {signUp}=useAuth()
     const [error,setError] = useState("")
     const [loading,setLoading] = useState(false)
     const history = useHistory()
@@ -29,9 +31,11 @@ export default function SignUpForm() {
             setError("")
             setLoading(true)
          await signUp(emailRef.current.value,passwordRef.current.value)
-         
-         history.push("/Dashboard")
+        //  if (!loading && !error) {
+           history.push('/Dashboard');
+        //   }
         } catch{
+            console.log(e)
             setError('Failed to create account ')
         
         }
@@ -45,7 +49,7 @@ export default function SignUpForm() {
         <Card>
             <Card.Body>
                 <h2 className="text-center mb-4">SIGN UP</h2>
-                
+                <h4>Currently logged in as {currentUser?.email}</h4>
                 {error && <Alert variant='danger'>{error}</Alert>}
                 <Form onSubmit={handleSubmit}>
                     <Form.Group id ="email">

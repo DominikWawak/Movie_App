@@ -24,6 +24,7 @@ const HomePage = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[currentPage]);
 
+  console.log(movies)
   // const {  data, error, isLoading, isError }  = useQuery('discover', getMovies.bind(this,currentPage))
   
   // if (isLoading) {

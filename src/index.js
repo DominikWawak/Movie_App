@@ -17,6 +17,8 @@ import Dashboard from "./pages/Dashboard"
 import PrivateRoute from "./components/privateRoute"
 import forgotPassword from "./components/forgotPassword";
 import UpdateProfile from "./components/updateProfile.js";
+import AddMovieReviewPage from './pages/addMovieReviewPage.js'
+import { AuthProvider } from "./contexts/AuthContext";
 
 
 const queryClient = new QueryClient({
@@ -34,7 +36,9 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
           <SiteHeader />      {/* New Header  */}
+          <AuthProvider>
           <MoviesContextProvider>
+          
           
             {" "}
       <Switch>
@@ -47,12 +51,13 @@ const App = () => {
         <Route path="/forgotPassword" component={forgotPassword} />
         <PrivateRoute exact path="/Dashboard" component={Dashboard} />
         <PrivateRoute exact path="/updateProfile" component={UpdateProfile}/>
+        <PrivateRoute exact path="/reviews/form" component={AddMovieReviewPage} />
         <Route path="/reviews/:id" component={MovieReviewPage} />
         <Redirect from="*" to="/" />
       </Switch>
       
       </MoviesContextProvider>
-
+</AuthProvider>
     </BrowserRouter>
     <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>

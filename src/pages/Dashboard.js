@@ -1,13 +1,12 @@
-import { updateCurrentUser } from '@firebase/auth'
+
 import React,{useState,useContext,useEffect} from 'react'
 import { Card,Button,Alert,Form } from 'react-bootstrap'
-import {app} from '../firebase'
+import app from '../firebase'
 import {db} from '../firebase'
 import { useAuth } from '../contexts/AuthContext'
 import firebase from 'firebase/compat/app'
 import  { getFirestore, collection,query, where, getDocs,limit,orderBy } from "firebase/firestore"
 import { Link, useHistory} from 'react-router-dom'
-
 import CardHeader from "@material-ui/core/CardHeader";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
@@ -30,14 +29,14 @@ export default  function Dashboard() {
     // const {auth}=useContext(useAuth)
     // console.log(auth)
     
-    const currentUser = firebase.auth().currentUser;
+    const currentUser = useAuth()
     //const currentUser  = useAuth()
    // const {logOut} = useAuth()
     const history= useHistory()
 
 
     
-        const postRef = collection(db,"posts")
+        const postRef = collection(db,"reviews")
 
         useEffect(() => {
             const getPosts = async() =>{
@@ -107,15 +106,15 @@ export default  function Dashboard() {
 
 
         <br></br>
-    <Form >
+    {/* <Form >
         <div class="form-group">
         <label for="exampleFormControlTextarea1">Create a post</label>
         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
         </div>
         <Button className="w-100" type ="submit">Post</Button>
-    </Form>
+    </Form> */}
 
-        <h2>Your Posts</h2>
+        <h2>Your Reviews</h2>
         <br/>
         <div>
             {posts.map((post) =>{
@@ -129,7 +128,7 @@ export default  function Dashboard() {
                  <CardHeader
                    avatar={
                      <Avatar aria-label="recipe" >
-                       {currentUser.email}
+                       {post.Author}
                      </Avatar>
                    }
                    action={
@@ -137,9 +136,9 @@ export default  function Dashboard() {
                        <FavoriteIcon />
                      </IconButton>
                    }
-                   title={currentUser.email +" |-| "+ post.createdAt}
+                   title={post.movieId + "-" + post.rating}
                    
-                   subheader={post.text}
+                   subheader={post.Review}
                  />
                </Card>
                 )

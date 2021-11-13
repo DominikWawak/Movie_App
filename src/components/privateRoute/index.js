@@ -1,11 +1,11 @@
 import React ,{useContext}from 'react'
 import {Route,Redirect} from "react-router-dom"
-import { useAuth } from '../../contexts/AuthContext'
+import { useAuth} from '../../contexts/AuthContext'
 import firebase from 'firebase/compat'
 
 export default function PrivateRoute({component:Component, ...rest}) {
     
-    const currentUser = firebase.auth().currentUser
+    const {currentUser} = useAuth()
     
     return (
         <Route

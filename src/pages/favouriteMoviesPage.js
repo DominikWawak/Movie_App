@@ -6,10 +6,11 @@ import { getMovie } from "../api/tmdb-api";
 import Spinner from '../components/spinner';
 import RemoveFromFavorites from "../components/cardIcons/removeFromFavourites";
 import WriteReview from "../components/cardIcons/writeReview";
+import { useAuth } from "../contexts/AuthContext";
 
 const FavoriteMoviesPage = () => {
   const {favorites: movieIds } = useContext(MoviesContext);
-
+  const {currentUser}= useAuth()
   // Create an array of queries and run in parallel.
   const favoriteMovieQueries = useQueries(
     movieIds.map((movieId) => {
@@ -36,7 +37,10 @@ const FavoriteMoviesPage = () => {
         return (
           <>
             <RemoveFromFavorites movie={movie} />
+          { currentUser ?
             <WriteReview movie={movie} />
+            : null
+            }
           </>
         );
       }}

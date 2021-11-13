@@ -1,8 +1,9 @@
 import React , {useContext,useState, useEffect}from 'react'
-import {app} from "../firebase"
+import app from "../firebase"
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,onAuthStateChanged,sendPasswordResetEmail} from "firebase/auth";
 //import { getAuth, createUserWithEmailAndPassword } from "firebase/compat/auth";
 import firebase from 'firebase/compat';
+import { Link, useHistory} from 'react-router-dom'
 
 
 const AuthContext = React.createContext();
@@ -16,6 +17,7 @@ export function useAuth(){
 export function AuthProvider({children}) {
     const [currentUser,setCurrentUser] = useState("")
     const [loading,setLoading] = useState(false)
+    const history=useHistory()
 
     const usr = "hello";
 
@@ -59,10 +61,16 @@ export function AuthProvider({children}) {
     }
 
     useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth,(user) => {
+    const unsubscribe = onAuthStateChanged(auth,user => {
       
         setCurrentUser(user)
         setLoading(false)
+        if(user){
+            history.push("/Dashboard")
+        }
+        else{
+            console.log("not logged in")
+        }
         
     })
 
@@ -71,7 +79,7 @@ export function AuthProvider({children}) {
 
     const value = {
         currentUser,
-        usr,
+        
         signUp,
         logIn,
         logOut,
@@ -83,4 +91,3 @@ export function AuthProvider({children}) {
         </AuthContext.Provider>
     )
 }
-
