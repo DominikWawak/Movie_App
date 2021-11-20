@@ -46,13 +46,13 @@ const SiteHeader = ( { history }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const currentUser=useAuth()
-  console.log({currentUser})
+  
   const menuOptions = [
     { label: "Home", path: "/" },
     { label: "Upcoming Movies", path: "/movies/upcoming" },
     { label: "Favorites", path: "/movies/favorites" },
     { label: "Sign In", path: "/signUp" },
-    { label: "Option 4", path: "/" },
+    { label: "Feeling Lucky?", path: "/feelinglucky" },
   ];
 
   const handleMenuSelect = (pageURL) => {
@@ -62,7 +62,7 @@ const SiteHeader = ( { history }) => {
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
+  console.log({currentUser})
   return (
     <>
       <AppBar position="fixed" style={{ background: '#2E3B55' }}>
@@ -75,6 +75,7 @@ const SiteHeader = ( { history }) => {
                 style={{ fontSize: "50px" }}
               />
           FLICKS
+          
           
           </Typography>
           

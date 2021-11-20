@@ -14,11 +14,13 @@ import { PageNumProvider } from "./contexts/pageNumberContext";
 import signUpPage from "./pages/signUpPage"
 import logIn from "./pages/logInPage"
 import Dashboard from "./pages/Dashboard"
+import Feeling from "./pages/feelingPage";
 import PrivateRoute from "./components/privateRoute"
-import forgotPassword from "./components/forgotPassword";
+import ForgotPassword from "./components/forgotPassword";
 import UpdateProfile from "./components/updateProfile.js";
 import AddMovieReviewPage from './pages/addMovieReviewPage.js'
 import { AuthProvider } from "./contexts/AuthContext";
+
 
 
 const queryClient = new QueryClient({
@@ -43,12 +45,13 @@ const App = () => {
             {" "}
       <Switch>
         <Route exact path="/movies/upcoming" component={upcomingMoviesPage} />
-        <Route exact path="/movies/favorites" component={FavoriteMoviesPage} />
+        <PrivateRoute exact path="/movies/favorites" component={FavoriteMoviesPage} />
         <Route path="/movies/:id" component={MoviePage} />
         <Route exact path="/" component={HomePage} />
         <Route exact path="/signUp" component={signUpPage} />
         <Route exact path="/logIn" component={logIn} />
-        <Route path="/forgotPassword" component={forgotPassword} />
+        <Route exact path="/feelinglucky" component={Feeling} />
+        <Route path="/forgotPassword" component={ForgotPassword} />
         <PrivateRoute exact path="/Dashboard" component={Dashboard} />
         <PrivateRoute exact path="/updateProfile" component={UpdateProfile}/>
         <PrivateRoute exact path="/reviews/form" component={AddMovieReviewPage} />

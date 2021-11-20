@@ -98,7 +98,7 @@ const ReviewForm = ({ movie, history }) => {
     review.content=content;
     
     const docRef = doc(db,"reviews",currentUser.email+review.movieId+review.rating)
-    const payload = {Author:author, Review :content,movieId:review.movieId,rating:review.rating}
+    const payload = {Author:author, Review :content,movieId:review.movieId,rating:review.rating,email:currentUser.email}
     
     await setDoc(docRef,payload)
   };

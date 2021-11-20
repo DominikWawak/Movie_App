@@ -45,8 +45,8 @@ const UpcomingMoviesPage = (props) => {
   //const addToFavorites = (movieId) => true 
 
   return (
-    <>
-    <Paginator clickFunction = {handlePageClicked}/>
+    <div style={{backgroundColor:'#2E3B55'}}>
+    <Paginator clickFunction = {handlePageClicked} />
     <PageTemplate
       title="Upcoming Movies"
       movies={movies}
@@ -54,7 +54,7 @@ const UpcomingMoviesPage = (props) => {
         return <AddToPlaylistIcon movie={movie} />
       }}
     />
-    </>
+    </div>
 );
 };
 

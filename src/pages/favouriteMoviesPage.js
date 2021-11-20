@@ -10,8 +10,9 @@ import { useAuth } from "../contexts/AuthContext";
 
 const FavoriteMoviesPage = () => {
   const {favorites: movieIds } = useContext(MoviesContext);
-  const {currentUser}= useAuth()
+  const currentUser= useAuth()
   // Create an array of queries and run in parallel.
+  
   const favoriteMovieQueries = useQueries(
     movieIds.map((movieId) => {
       return {
@@ -30,7 +31,8 @@ const FavoriteMoviesPage = () => {
   //const toDo = () => true;
 
   return (
-    <PageTemplate
+    <div style={{backgroundColor:'#2E3B55'}}>
+    <PageTemplate 
       title="Favorite Movies"
       movies={movies}
       action={(movie) => {
@@ -45,6 +47,7 @@ const FavoriteMoviesPage = () => {
         );
       }}
     />
+    </div>
   );
 };
 

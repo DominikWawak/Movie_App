@@ -9,8 +9,10 @@ import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import SearchIcon from "@material-ui/icons/Search";
 import FormControl from "@material-ui/core/FormControl";
+import { FormGroup ,FormControlLabel} from "@material-ui/core";
 import Select from "@material-ui/core/Select";
 import img from '../../images/pexels-dziana-hasanbekava-5480827.jpg'
+import { Checkbox } from "@material-ui/core";
 import { getGenres } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../spinner';
@@ -24,19 +26,24 @@ const useStyles = makeStyles((theme) => ({
 
   root:{
     width:'100%'
-  }
+  },
 
-  // formControl: {
-  //   margin: theme.spacing(1),
-  //   minWidth: 220,
-  //   backgroundColor: "rgb(255, 255, 255)",
-  //},
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 220,
+    margin:"10px",
+    marginRight:"7%",
+    backgroundColor: "rgb(255, 255, 255)",
+  },
+  genreFilter:{
+    width:"10em"
+  }
 }));
 
 export default function FilterMoviesCard(props) {
   const classes = useStyles();
   const { data, error, isLoading, isError } = useQuery("genres", getGenres);
-
+  const [checked, setChecked] = React.useState(true);
   if (isLoading) {
     return <Spinner />;
   }
@@ -55,9 +62,16 @@ export default function FilterMoviesCard(props) {
   const handleTextChange = (e, props) => {
     handleChange(e, "name", e.target.value);
   };
+  const handleTextActorChange = (e, props) => {
+    handleChange(e, "actorName", e.target.value);
+  };
 
   const handleGenreChange = (e) => {
     handleChange(e, "genre", e.target.value);
+  };
+  const handleChangeSort = (e) => {
+    handleChange(e, "pop", e.target.checked);
+    
   };
 
   return (
@@ -71,16 +85,27 @@ export default function FilterMoviesCard(props) {
         <TextField
       className={classes.formControl}
       id="filled-search"
-      label="Search field"
+      label="Search Movies"
       type="search"
       value={props.titleFilter}
       variant="filled"
       onChange={handleTextChange}
     />
-        <FormControl >
-        {/* className={classes.formControl} */}
+{/* 
+<TextField
+      className={classes.formControl}
+      id="filled-search"
+      label="Search Actors"
+      type="search"
+      value={props.actorFilter}
+      variant="filled"
+      onChange={handleTextActorChange}
+    /> */}
+    
+        <FormControl 
+        className={classes.formControl}>
           <InputLabel id="genre-label">Genre</InputLabel>
-          <Select
+          <Select 
       labelId="genre-label"
       id="genre-select"
       value={props.genreFilter}
@@ -94,7 +119,11 @@ export default function FilterMoviesCard(props) {
               );
             })}
           </Select>
+
         </FormControl>
+ 
+        <FormControlLabel control={<Checkbox onChange={handleChangeSort} value={props.sortPopularity} />} label="Sort by most popular" />
+   
       </CardContent>
       <CardMedia
         className={classes.media}

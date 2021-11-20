@@ -24,26 +24,29 @@ export default  function Dashboard() {
     
     const [error,setError]=useState("")
 
-    const[posts,setPosts]=useState([])
+    const[reviews,setReviews]=useState([])
 
     // const {auth}=useContext(useAuth)
     // console.log(auth)
     
     const currentUser = useAuth()
+    console.log("USEr",currentUser,currentUser.currentUser.email)
     //const currentUser  = useAuth()
    // const {logOut} = useAuth()
     const history= useHistory()
 
 
     
-        const postRef = collection(db,"reviews")
+        const reviewRef = collection(db,"reviews")
 
         useEffect(() => {
-            const getPosts = async() =>{
-                const data = await getDocs(postRef)
+            const getReviews = async() =>{
+                const data = await getDocs(reviewRef)
                 console.log(data)
                 // map to the data in the database but not the id 
-                setPosts(data.docs.map((doc) => ({...doc.data(),id: doc.id})))
+                setReviews(data.docs.map((doc) => ({...doc.data(),id: doc.id})).filter(function (review){
+                    return review.email===currentUser.currentUser.email;
+                }))
                 
                 // data.docs.forEach((doc)=>{
                 //     setPosts([...posts,{...doc.data(),id: doc.id}])
@@ -52,10 +55,10 @@ export default  function Dashboard() {
                
             }
 
-            getPosts()
+            getReviews()
         }, [])
 
-        console.log(posts)
+        console.log(reviews)
        // const query = messageRef.orderBy('createdAt').limit(25)
     //    const q= query(postRef,orderBy("createdAt"),limit(25));
 
@@ -98,7 +101,7 @@ export default  function Dashboard() {
             </div>
         
                 {error && <Alert variant="danger"> {error}</Alert>}
-                <strong>Email:</strong>  {currentUser.email}
+                <strong>Email:</strong>  {currentUser.currentUser.email}
                 <Link to="/updateProfile" className="btn btn-primary w-100 mt-3">Update Profile</Link>
             </Card.Body>
 
@@ -117,7 +120,7 @@ export default  function Dashboard() {
         <h2>Your Reviews</h2>
         <br/>
         <div>
-            {posts.map((post) =>{
+            {reviews.map((review) =>{
                 return (
                 //     <div>
                 //     {" "}
@@ -128,7 +131,7 @@ export default  function Dashboard() {
                  <CardHeader
                    avatar={
                      <Avatar aria-label="recipe" >
-                       {post.Author}
+                       {review.Author}
                      </Avatar>
                    }
                    action={
@@ -136,9 +139,9 @@ export default  function Dashboard() {
                        <FavoriteIcon />
                      </IconButton>
                    }
-                   title={post.movieId + "-" + post.rating}
+                   title={review.movieId + "-" + review.rating}
                    
-                   subheader={post.Review}
+                   subheader={review.Review}
                  />
                </Card>
                 )
