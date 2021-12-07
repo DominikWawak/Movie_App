@@ -103,7 +103,7 @@ The below screenshot shows my story book, It does not reflect on all of my featu
 
 The movie/favourites route is Private as the favourite movies are stored in the users database.
 The Dashboar and updateProfile routes are also private as they require the user to be logged in.
-## Independent learning (If relevant).
+## Independent learning.
 
 + Firebase integration - mainly the Docs as the firebase version changes, some past knowledge:
 https://firebase.google.com/docs/web/modular-upgrade
