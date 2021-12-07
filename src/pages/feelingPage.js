@@ -29,9 +29,8 @@ export default function Feeling() {
     console.log("MOVIE CICKE YAYAYAYAYAYA")
   }
     return (
-        <div style={{backgroundColor:'red'}}>
+       
 
-<br></br>
  <div >
 <div style={{justifyContent: 'center',width:'100%',display:'flex'}}>
         <h1 style={{ justifyContent:"center"}}>What will you watch today?</h1>
@@ -76,6 +75,6 @@ export default function Feeling() {
 </div>
            
             
-        </div>
+        
     )
 }

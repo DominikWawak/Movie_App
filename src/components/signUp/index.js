@@ -49,7 +49,7 @@ export default function SignUpForm() {
         <Card>
             <Card.Body>
                 <h2 className="text-center mb-4">SIGN UP</h2>
-                <h4>Currently logged in as {currentUser?.email}</h4>
+                {/* <h4>Currently logged in as {currentUser?.email}</h4> */}
                 {error && <Alert variant='danger'>{error}</Alert>}
                 <Form onSubmit={handleSubmit}>
                     <Form.Group id ="email">

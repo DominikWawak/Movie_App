@@ -14,10 +14,10 @@ const useStyles = makeStyles({
     card: {display: "flex" ,overflow:'none',width:700},
     media: { },
     avatar: {
-      backgroundColor: "rgb(255, 0, 0)",
+      
     },
     movieover: {
-      backgroundColor:"#2E3B55",
+      
       position:"absolute",
      
       
@@ -45,7 +45,7 @@ export default function FeelingLuckyCard({show}) {
 
    
     return (
-        <div style={{backgroundColor:'red'}}>
+     
             
   
            <Card className={classes.card}>
@@ -67,6 +67,6 @@ export default function FeelingLuckyCard({show}) {
       </CardActionArea>
     </Card>
            
-        </div>
+       
     )
 }

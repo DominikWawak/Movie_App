@@ -54,18 +54,7 @@ const HomePage = (props) => {
   
   const movies = data.results;
   console.log("RES",data.results)
-  //setMovies(data.results)
-  // const {  data, error, isLoading, isError }  = useQuery('discover', getMovies.bind(this,currentPage))
-  
-  // if (isLoading) {
-  //   return <Spinner />
-  // }
-
-  // if (isError) {
-  //   return <h1>{error.message}</h1>
-  // }  
-  //const movies = data.results;
-
+ 
  
      
   const handlePageClicked = (data) =>{

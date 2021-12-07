@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
   root:{
     width:'100%'
+  
   },
 
   formControl: {
@@ -75,6 +76,7 @@ export default function FilterMoviesCard(props) {
   };
 
   return (
+    <div >
     <Card className={classes.root} variant="outlined">
       {/* className={classes.root} */}
       <CardContent>
@@ -134,5 +136,6 @@ export default function FilterMoviesCard(props) {
        
       </CardContent>
     </Card>
+    </div>
   );
 }

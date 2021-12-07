@@ -131,7 +131,7 @@ export default  function Dashboard() {
                  <CardHeader
                    avatar={
                      <Avatar aria-label="recipe" >
-                       {review.Author}
+                       {review.rating}
                      </Avatar>
                    }
                    action={
@@ -139,7 +139,7 @@ export default  function Dashboard() {
                        <FavoriteIcon />
                      </IconButton>
                    }
-                   title={review.movieId + "-" + review.rating}
+                   title={currentUser.currentUser.email}
                    
                    subheader={review.Review}
                  />

@@ -99,6 +99,7 @@ function MovieListPageTemplate({ movies, title, action , paginator}) {
        
         <Grid key="find" item xs={12} >
           <FilterCard
+            style={{backgroundColor:"252f44"}}
             onUserInput={handleChange}
             titleFilter={nameFilter}
            
