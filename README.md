@@ -86,7 +86,7 @@ The below screenshot shows my story book, It does not reflect on all of my featu
 > The dashboard is the page the user goes to when he or she is logged on. It allows the user to update an email. And also allows the user to view his or her reviews. 
 
 ### Streaming
-![ ](./images/Screenshot 2022-03-13 at 13.44.08)
+![ ](https://github.com/DominikWawak/Movie_App/blob/master/images/Screenshot%202021-12-30%20at%2019.43.28.png)
 
 > Streaming movies and tv shows from external API
 
